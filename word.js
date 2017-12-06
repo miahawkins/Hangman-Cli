@@ -8,7 +8,7 @@ var Word = function(letters) {
     // Array to hold letters the user has guessed
     this.guesses = [];
     // Begins game with 10 guesses
-    this.guessesRemaining = 10;
+    this.guessesRemaining = 9;
 
     this.getLetters = function() {
 
@@ -24,7 +24,6 @@ var Word = function(letters) {
 
 // Prototype method for Word Constructor: checks if each letter is right
 Word.prototype.checkLetter = function(param) {
-    console.log(param);
     this.notCorrect = true;
     this.valid = false;
     // Param must be lower case

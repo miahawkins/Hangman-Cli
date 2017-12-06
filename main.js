@@ -5,7 +5,7 @@ var inquirer = require("inquirer");
 
 // Global variables
 var wordBank = ["petunia", "rose", "tulip", "orchid", "daisy", "sunflower", "lily", "lilac", "dandelion", "iris", "daffodil", "carnation", "marigold", "peony"];
-var guessesRemaining = 10;
+var guessesRemaining = 9;
 var wins = 0;
 var currentWord = new Word(wordBank[Math.floor(Math.random() * wordBank.length)]);
 
@@ -17,6 +17,7 @@ console.log("------------------------------------");
 
 function game() {
 	console.log(currentWord.renderWord());
+    console.log("");
 
     // Prompt user to guess a letter
     var prompt = (
@@ -37,14 +38,18 @@ function game() {
               // Otherwise, if the word is completed log You Win and reset
             } else {
             	if (currentWord.isWordCompleted()) {
+                    console.log("------------------------------------------");
             		console.log("You Win! The word is " + currentWord.renderWord());
+                    console.log("------------------------------------------");
                     console.log("Next Game: Pick a letter");
             		reset();
             		newGame();
             	  // Otherwise, if the user has no guesses left, then they lose
-            	} else if (currentWord.guessesRemaining === 0) {
+            	} else if (guessesRemaining === 0) {
+                    console.log("------------------------------------------");
             		console.log("Sorry, but you are out of gueses. The answer was " + currentWord.renderWord());
-            		console.log("Next Game: Pick a letter");
+            		console.log("------------------------------------------");
+                    console.log("Next Game: Pick a letter");
                     reset();
             		newGame();
             	  // If the user has guesses left, then they keep going
@@ -60,6 +65,14 @@ function game() {
 };
 game();
 
+var newPrompt = (
+        inquirer.prompt([{
+            type: "list",
+            message: "Would you like to play again?",
+            choices: ["Yes", "No"],
+            name: "playAgain"
+
+        }]).then(newGame());
 
 function newGame() {
     if (guessesRemaining > 0) {
@@ -72,7 +85,7 @@ function newGame() {
 };
 
 function reset() {
-    guessesRemaining = 10;
+    guessesRemaining = 9;
     currentWord = new Word(wordBank[Math.floor(Math.random() * wordBank.length)]);
 
 };
