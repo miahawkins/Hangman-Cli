@@ -33,7 +33,8 @@ Word.prototype.checkLetter = function(param) {
         this.valid = true;
         // Letter chosen is incorrect
     } else {
-    	// Push letter to the guesses array
+        // Push letter to the guesses array
+
         this.guesses.push(param);
         for (var i = 0; i < this.lettersArray.length; i++) {
             if (this.lettersArray[i].character == param) {
@@ -58,20 +59,13 @@ Word.prototype.renderWord = function() {
 
 // Prototype to see if the word has been completely guessed
 Word.prototype.isWordCompleted = function() {
-	for (var i = 0; i < this.lettersArray.length; i++) {
+    for (var i = 0; i < this.lettersArray.length; i++) {
 
-		if (this.lettersArray[i].show === false) {
-			return false;
-		} 
-	}
-	return true;
+        if (this.lettersArray[i].show === false) {
+            return false;
+        }
+    }
+    return true;
 };
 
 module.exports = Word;
-
-
-
-
-
-
-
